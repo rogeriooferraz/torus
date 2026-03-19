@@ -1,7 +1,7 @@
 const PI = Math.PI;
 
-const canvasCols = 220;
-const canvasRows = 72;
+const canvasCols = 280;
+const canvasRows = 96;
 const canvasArea = canvasCols * canvasRows;
 const canvasCenterX = canvasCols / 2;
 const canvasCenterY = canvasRows / 2;
