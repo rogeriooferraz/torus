@@ -142,23 +142,57 @@ function renderFrame(torusFrame) {
  * @returns {void}
  */
 function startTorusAnimation() {
-  const outputElement = document.getElementById("torus-frame");
+  const TorusFrameElement = document.getElementById("torus-frame");
 
-  if (!outputElement) {
+  if (!TorusFrameElement) {
     return;
   }
 
-  const torusFrame = outputElement;
+  /** @type {HTMLElement} */
+  const TorusFrame = TorusFrameElement;
+  let isAnimating = false;
+
+  /** @type {ReturnType<typeof setInterval> | undefined} */
   let animationTimerId;
 
-  renderFrame(torusFrame);
-  animationTimerId = setInterval(function animateTorus() {
-    renderFrame(torusFrame);
-  }, frameIntervalMs);
+  function startAnimation() {
+    if (isAnimating) {
+      return;
+    }
 
-  window.addEventListener("beforeunload", function cleanupAnimation() {
+    animationTimerId = setInterval(function animateTorus() {
+      renderFrame(TorusFrame);
+    }, frameIntervalMs);
+    isAnimating = true;
+  }
+
+  function stopAnimation() {
+    if (!isAnimating) {
+      return;
+    }
+
     clearInterval(animationTimerId);
+    animationTimerId = undefined;
+    isAnimating = false;
+  }
+
+  function toggleAnimation() {
+    if (isAnimating) {
+      stopAnimation();
+      return;
+    }
+
+    startAnimation();
+  }
+
+  renderFrame(TorusFrame);
+  startAnimation();
+
+  globalThis.addEventListener("click", toggleAnimation);
+
+  globalThis.addEventListener("beforeunload", function cleanupAnimation() {
+    stopAnimation();
   });
 }
 
-window.addEventListener("load", startTorusAnimation, { once: true });
+globalThis.addEventListener("load", startTorusAnimation, { once: true });

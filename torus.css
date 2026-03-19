@@ -33,4 +33,6 @@ body {
     font: 10pt/1 monospace;
     line-height: 1;
     white-space: pre;
+    user-select: none;
+    -webkit-user-select: none;
 }
