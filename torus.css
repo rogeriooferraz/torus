@@ -20,17 +20,16 @@ body {
     font-family: "Courier New", Courier, monospace;
 }
 
-.donut-output {
+.torus-output {
     display: flex;
     justify-content: center;
     width: 100%;
     max-width: 100%;
 }
 
-#donut-frame {
+#torus-frame {
     margin: 0;
-    width: min(80ch, 100%);
-    max-width: 100%;
+    width: fit-content;
     font: 10pt/1 monospace;
     line-height: 1;
     white-space: pre;
