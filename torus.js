@@ -8,8 +8,8 @@ const canvasCenterY = canvasRows / 2;
 
 const majorRad = 22;
 const minorRad = 4.2;
-const poloidalStep = 0.07;
-const toroidalStep = 0.02;
+const poloidalStep = 0.05;
+const toroidalStep = 0.015;
 
 const cameraDist = 28;
 const frameIntervalMs = 50;
