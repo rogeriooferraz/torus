@@ -1,5 +1,11 @@
 # Torus
 
+<a href="https://rogeriooferraz.github.io/torus/">
+  <img src="./media/animation.gif" alt="Torus animation preview" width="320" />
+</a>
+
+Click <a href="https://rogeriooferraz.github.io/torus/">here</a> to view the animation in full screen.
+
 This project is based on Andy Sloane's classic ASCII donut animation [1,2].
 
 This version was adapted and substantially modified by Rogerio O. Ferraz, including code refactoring, renamed geometry terminology, updated layout and styling, click-based pause/resume, geometry tuning, and rendering/sampling changes.

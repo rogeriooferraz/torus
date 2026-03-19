@@ -19,11 +19,27 @@ const poloidalStep = 0.05;
 const toroidalStep = 0.015;
 
 const cameraDist = 28;
+const cycleFrames = 6280;
+const axialTurnsPerCycle = 11;
+const elevTurnsPerCycle = 5;
+const axialRotStep = (2 * PI * axialTurnsPerCycle) / cycleFrames;
+const elevRotStep = (2 * PI * elevTurnsPerCycle) / cycleFrames;
 const frameIntervalMs = 50;
 const shadingRamp = ".,-~:;=!*#$@";
 
 let axialRot = 1;
 let elevRot = 1;
+
+function getRotationStepMultiplier() {
+  const urlParams = new URLSearchParams(globalThis.location.search);
+  const stepMultiplier = Number(urlParams.get("stepMultiplier"));
+
+  if (!Number.isFinite(stepMultiplier) || stepMultiplier <= 0) {
+    return 1;
+  }
+
+  return stepMultiplier;
+}
 
 /**
  * @param {{
@@ -64,6 +80,7 @@ function getBrightnessIndex({
  * @returns {void}
  */
 function renderFrame(torusFrame) {
+  const rotationStepMultiplier = getRotationStepMultiplier();
   const characterBuffer = [];
   const depthBuffer = [];
   const cosAxialRot = Math.cos(axialRot);
@@ -71,8 +88,8 @@ function renderFrame(torusFrame) {
   const cosElevRot = Math.cos(elevRot);
   const sinElevRot = Math.sin(elevRot);
 
-  axialRot += 0.011;
-  elevRot += 0.005;
+  axialRot += axialRotStep * rotationStepMultiplier;
+  elevRot += elevRotStep * rotationStepMultiplier;
 
   for (let bufferIndex = 0; bufferIndex < canvasArea; bufferIndex += 1) {
     characterBuffer[bufferIndex] =
