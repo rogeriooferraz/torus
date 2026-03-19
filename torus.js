@@ -1,3 +1,10 @@
+// Based on the classic ASCII donut animation by Andy Sloane.
+// https://www.a1k0n.net/2011/07/20/donut-math.html
+//
+// This version was adapted and substantially modified by Rogerio O. Ferraz,
+// including refactoring, geometry tuning, interaction improvements,
+// and layout/styling changes.
+
 const PI = Math.PI;
 
 const canvasCols = 280;
